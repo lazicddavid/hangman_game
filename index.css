@@ -13,7 +13,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.game-container {
+.game_container {
   width: 600px;
   height: 420px;
 
@@ -30,4 +30,58 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.play-btn {
+  width: 140px;
+  height: 140px;
+
+  border-radius: 50%;
+  border: none;
+
+  font-size: 50px;
+  color: white;
+
+  cursor: pointer;
+
+  background: linear-gradient(145deg, #ff6ec4, #7873f5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 3px 10px rgba(255, 255, 255, 0.3);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+}
+
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+.game-title {
+  position: absolute;
+  top: 40px;
+
+  text-align: center;
+  font-size: 60px;
+  font-weight: 900;
+
+  color: #cfe8ff;
+
+  letter-spacing: 2px;
+}
+
+.game-title .small {
+  display: block;
+  font-size: 20px;
+  letter-spacing: 4px;
 }
