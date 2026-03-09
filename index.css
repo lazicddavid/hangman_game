@@ -14,6 +14,7 @@ body {
 }
 
 .game_container {
+  position: relative;
   width: 600px;
   height: 420px;
 
@@ -32,7 +33,7 @@ body {
   align-items: center;
 }
 
-.play-btn {
+.play_btn {
   width: 140px;
   height: 140px;
 
@@ -68,15 +69,16 @@ body {
 }
 
 .game-title {
+  padding: 10px 8px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #ff6ec4, #7873f5);
   position: absolute;
+  transform: translate(0%, -110%);
   top: 40px;
-
   text-align: center;
   font-size: 60px;
   font-weight: 900;
-
   color: #cfe8ff;
-
   letter-spacing: 2px;
 }
 
