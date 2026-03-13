@@ -1,3 +1,7 @@
+const DOM = {
+  playBtn: document.getElementById("playBtn"),
+};
+
 const words = ["......"];
 
 const categories = {
