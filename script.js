@@ -23,3 +23,8 @@ const gameState = {
 };
 
 //funkcija koja bira rec
+
+DOM.playBtn.addEventListener.addEventListener("click" function() {
+  DOM.startScreen.classList.add("hidden");
+  DOM.categoryScreen.classList.remove("hidden")
+})
