@@ -8,23 +8,27 @@
   </head>
   <body>
     <div class="game_container">
-      <h1 class="game-title">
-        <span class="small">THE</span>
-        HANGMAN
-        <span class="small">GAME</span>
-      </h1>
       <div id="startScreen">
-        <button class="play_btn">PLAY</button>
-      </div>
-      <div id="backBtn">Back</div>
+        <h1 class="game-title">
+          <span class="small">THE</span>
+          HANGMAN
+          <span class="small">GAME</span>
+        </h1>
 
-      <h1>Pick a Category</h1>
-      <button>Movies</button>
-      <button>TV Shows</button>
-      <button>Countries</button>
-      <button>Capital Cities</button>
-      <button>Animals</button>
-      <button>Sports</button>
+        <button id="playBtn" class="play_btn">PLAY</button>
+      </div>
+
+      <div id="categoryScreen" class="hidden">
+        <div id="backBtn">Back</div>
+
+        <h1>Pick a Category</h1>
+        <button>Movies</button>
+        <button>TV Shows</button>
+        <button>Countries</button>
+        <button>Capital Cities</button>
+        <button>Animals</button>
+        <button>Sports</button>
+      </div>
     </div>
     <script type="module" src="script.js"></script>
   </body>

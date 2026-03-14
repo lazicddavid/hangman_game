@@ -1,5 +1,8 @@
 const DOM = {
   playBtn: document.getElementById("playBtn"),
+  backBtn: document.getElementById("backBtn"),
+  startScreen: document.getElementById("startScreen"),
+  categoryScreen: document.getElementById("categoryScreen"),
 };
 
 const words = ["......"];
