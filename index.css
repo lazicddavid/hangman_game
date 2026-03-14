@@ -78,11 +78,8 @@ body {
   letter-spacing: 5px;
 }
 
-#backBtn {
-  background-color: white;
-}
-
 .categories {
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -132,12 +129,7 @@ body {
 }
 
 #backBtn {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-}
-
-#backBtn {
+  background-color: white;
   position: absolute;
   top: 40px;
   left: 40px;
