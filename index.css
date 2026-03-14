@@ -78,6 +78,89 @@ body {
   letter-spacing: 5px;
 }
 
-.hidden {
-  display: none;
+#backBtn {
+  background-color: white;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 80px;
+}
+
+.category_btn {
+  height: 90px;
+  border-radius: 20px;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+
+  background: linear-gradient(145deg, #3c7cff, #2955d9);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 2px 6px rgba(255, 255, 255, 0.2);
+}
+
+.category_btn:hover {
+  transform: scale(1.05);
+}
+
+#categoryScreen {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  background: linear-gradient(
+    180deg,
+    #1a237e 0%,
+    #283593 40%,
+    #3949ab 70%,
+    #5c6bc0 100%
+  );
+}
+
+.categories {
+  margin-top: 60px;
+}
+
+#backBtn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+#backBtn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  color: white;
+
+  background: linear-gradient(145deg, #ff6ec4, #7873f5);
+}
+
+#backBtn svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
 }
