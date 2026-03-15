@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="game_container">
-      <div id="startScreen">
+      <div id="startScreen" class="hidden">
         <h1 class="game-title">
           <span class="small">THE</span>
           HANGMAN
@@ -28,12 +28,15 @@
         </button>
 
         <div class="categories">
-          <button class="category_btn">MOVIES</button>
-          <button class="category_btn">TV SHOWS</button>
-          <button class="category_btn">COUNTRIES</button>
-          <button class="category_btn">CAPITAL CITIES</button>
-          <button class="category_btn">ANIMALS</button>
-          <button class="category_btn">SPORTS</button>
+          <button class="category-btn" data-category="movies">Movies</button>
+          <button class="category-btn" data-category="sport">Sport</button>
+          <button class="category-btn" data-category="countries">
+            Countries
+          </button>
+          <button class="category-btn" data-category="capitals">
+            Capitals
+          </button>
+          <button class="category-btn" data-category="animals">Animals</button>
         </div>
       </div>
     </div>

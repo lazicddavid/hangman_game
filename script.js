@@ -4,6 +4,7 @@ const DOM = {
   startScreen: document.getElementById("startScreen"),
   categoryScreen: document.getElementById("categoryScreen"),
   gameScreen: document.getElementById("gameScreen"),
+  categoryButtons: document.querySelectorAll(".category-btn"),
 };
 
 const words = ["......"];
