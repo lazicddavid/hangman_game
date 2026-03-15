@@ -5,6 +5,8 @@ const DOM = {
   categoryScreen: document.getElementById("categoryScreen"),
   gameScreen: document.getElementById("gameScreen"),
   categoryButtons: document.querySelectorAll(".category-btn"),
+  wordContainer: document.getElementById("wordContainer"),
+  wordContainer: document.getElementById("wordContainer"),
 };
 
 const words = ["......"];
@@ -47,6 +49,8 @@ function openGame(category) {
   const words = categories[category];
   selectedWord = words[Math.floor(Math.random() * words.length)];
 
+  gameState.chosenWord = categoryWords[randomIndex];
+
   DOM.categoryScreen.classList.add("hidden");
   DOM.gameScreen.classList.remove("hidden");
 
@@ -56,7 +60,21 @@ function openGame(category) {
 
 DOM.categoryButtons.forEach(function (button) {
   button.add.addEventListener("click", function () {
-    const seletedCategory = button.dataset.category;
+    const selectedCategory = button.dataset.category;
     openGame(selectedCategory);
   });
 });
+
+//funkc. za crtanje praznih polja
+
+function renderWord() {
+  DOM.wordContainer.innerHTML = "";
+
+  gameState.chosenWord.split("").forEach(function () {
+    const letterBox = document.createElement("div");
+    letterBox.classList.add("letter-box");
+
+    DOM.wordContainer.appendChild(letterBox);
+  });
+}
+renderWord();
