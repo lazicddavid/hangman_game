@@ -53,3 +53,10 @@ function openGame(category) {
   console.log(selectedCategory);
   console.log(selectedWord);
 }
+
+DOM.categoryButtons.forEach(function (button) {
+  button.add.addEventListener("click", function () {
+    const seletedCategory = button.dataset.category;
+    openGame(selectedCategory);
+  });
+});
