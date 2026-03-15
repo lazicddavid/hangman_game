@@ -33,3 +33,7 @@ DOM.backBtn.addEventListener("click", function () {
   DOM.categoryScreen.classList.add("hidden");
   DOM.startScreen.classList.remove("hidden");
 });
+
+//funkcije:
+
+let selectedCategory = "";
