@@ -15,6 +15,8 @@ const categories = {
   animals: ["cat", "dog", "shark"],
 };
 
+const wordsByCategory = {};
+
 const gameState = {
   category: "",
   chosenWord: "",
@@ -38,3 +40,16 @@ DOM.backBtn.addEventListener("click", function () {
 
 let selectedCategory = "";
 let selectedWord = "";
+
+function openGame(category) {
+  selectedCategory = category;
+
+  const words = categories[category];
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+
+  categoryScreen.classList.add("hidden");
+  gameScreen.classList.remove("hidden");
+
+  console.log(selectedCategory);
+  console.log(selectedWord);
+}
