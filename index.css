@@ -80,6 +80,7 @@ body {
 
 .categories {
   z-index: 1;
+  margin-top: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -124,8 +125,8 @@ body {
   );
 }
 
-.categories {
-  margin-top: 60px;
+#categoryScreen.hidden {
+  display: none;
 }
 
 #backBtn {
@@ -133,7 +134,7 @@ body {
   position: absolute;
   top: 40px;
   left: 40px;
-
+  z-index: 10;
   width: 60px;
   height: 60px;
 
