@@ -15,7 +15,11 @@ const categories = {
   animals: ["cat", "dog", "shark"],
 };
 
-const wordsByCategory = {};
+const wordsByCategory = {
+  movies: ["TITANIC", "GLADIATOR", "INCEPTION"],
+  sport: ["TENIS", "FUDBAL", "KOSARKA"],
+  countries: ["SRBIA", "FRANCE", "BRAZIL"],
+};
 
 const gameState = {
   category: "",
