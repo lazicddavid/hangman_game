@@ -37,3 +37,4 @@ DOM.backBtn.addEventListener("click", function () {
 //funkcije:
 
 let selectedCategory = "";
+let selectedWord = "";
