@@ -1,35 +1,18 @@
-const DOM = {
-  playBtn: document.getElementById("playBtn"),
-  backBtn: document.getElementById("backBtn"),
-  startScreen: document.getElementById("startScreen"),
-  categoryScreen: document.getElementById("categoryScreen"),
-  gameScreen: document.getElementById("gameScreen"),
-  categoryButtons: document.querySelectorAll(".category-btn"),
-  wordContainer: document.getElementById("wordContainer"),
-  categoryTitle: document.getElementById("categoryTitle"),
-  lettersContainer: document.getElementById("lettersContainer"),
-  attemptsText: document.getElementById("attemptsText"),
-  resultModal: document.getElementById("resultModal"),
-  resultMessage: document.getElementById("resultMessage"),
-  modalBackBtn: document.getElementById("modalBackBtn"),
-  newGameBtn: document.getElementById("newGameBtn"),
-  chooseCategoryBtn: document.getElementById("chooseCategoryBtn"),
-};
-
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
-  sport: ["FOTBALL", "BOX"],
+  sport: ["FOOTBALL", "BOX"],
   countries: ["SERBIA", "FRANCE", "SPAIN"],
   capitals: ["BELGRADE", "PARIS", "TOKYO", "MADRID"],
   animals: ["CAT", "DOG", "SHARK"],
 };
 
+//stejt
 const gameState = {
   category: "",
   chosenWord: "",
   guessedLetters: [],
   wrongLetters: [],
-  maxWrongAttemts: 6,
+  maxWrongAttempts: 6,
 };
 
 DOM.playBtn.addEventListener("click", function () {
@@ -42,6 +25,26 @@ DOM.backBtn.addEventListener("click", function () {
   DOM.startScreen.classList.remove("hidden");
 });
 
+DOM.categoryButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const selectedCategory = button.dataset.category;
+    openGame(selectedCategory);
+  });
+});
+
+DOM.modalBackBtn.addEventListener("click", function () {
+  goBackToCategories();
+});
+
+DOM.newGameBtn.addEventListener("click", function () {
+  goToStartScreen();
+});
+
+DOM.chooseCategoryBtn.addEventListener("click", function () {
+  goToCategoryScreen();
+});
+
+//pocetak igre
 function openGame(category) {
   gameState.category = category;
   gameState.guessedLetters = [];
@@ -57,11 +60,14 @@ function openGame(category) {
   DOM.categoryScreen.classList.add("hidden");
   DOM.gameScreen.classList.remove("hidden");
 
+  hideResultModal();
+
   console.log(gameState.category);
   console.log(gameState.chosenWord);
 
   renderWord();
   renderLetters();
+  renderAttempts();
 }
 
 function renderWord() {
@@ -78,13 +84,6 @@ function renderWord() {
     DOM.wordContainer.appendChild(letterBox);
   });
 }
-
-DOM.categoryButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    const selectedCategory = button.dataset.category;
-    openGame(selectedCategory);
-  });
-});
 
 function renderLetters() {
   DOM.lettersContainer.innerHTML = "";
@@ -104,26 +103,11 @@ function renderLetters() {
   });
 }
 
-/*
-renderWord();
-renderLetters();
-*/
+function renderAttempts() {
+  const attemptsLeft =
+    gameState.maxWrongAttempts - gameState.wrongLetters.length;
 
-function checkGameStatus() {
-  const allLettersGuessed = gameState.chosenWord
-    .split("")
-    .every(function (letter) {
-      return gameState.guessedLetters.includes(letter);
-    });
-
-  if (allLettersGuessed) {
-    showResultModal("YOU WIN");
-    return;
-  }
-
-  if (gameState.wrongLetters.length >= gameState.maxWrongAttempts) {
-    showResultModal("YOU LOSE");
-  }
+  DOM.attemptsText.textContent = `Attempts left: ${attemptsLeft}`;
 }
 
 function letterClick(letter, button) {
@@ -142,16 +126,86 @@ function letterClick(letter, button) {
   renderAttempts();
   checkGameStatus();
 }
-function renderAttempts() {
-  const attemptsLeft =
-    gameState.maxWrongAttempts - gameState.wrongLetters.length;
 
-  DOM.attemptsText.textContent = `Attempts left: ${attemptsLeft}`;
+function checkGameStatus() {
+  const allLettersGuessed = gameState.chosenWord
+    .split("")
+    .every(function (letter) {
+      return gameState.guessedLetters.includes(letter);
+    });
+
+  if (allLettersGuessed) {
+    showResultModal("YOU WIN");
+    return;
+  }
+
+  if (gameState.wrongLetters.length >= gameState.maxWrongAttempts) {
+    showResultModal("YOU LOSE");
+  }
 }
 
+//modal
+function showResultModal(message) {
+  DOM.resultMessage.textContent = message;
+  DOM.resultModal.classList.remove("hidden");
+
+  const allLetterButtons = DOM.lettersContainer.querySelectorAll(".letter-btn");
+
+  allLetterButtons.forEach(function (button) {
+    button.disabled = true;
+  });
+}
+
+function hideResultModal() {
+  DOM.resultModal.classList.add("hidden");
+}
+
+//restart
 function resetGameState() {
   gameState.category = "";
   gameState.chosenWord = "";
   gameState.guessedLetters = [];
   gameState.wrongLetters = [];
+}
+
+function goToStartScreen() {
+  hideResultModal();
+  resetGameState();
+
+  DOM.gameScreen.classList.add("hidden");
+  DOM.categoryScreen.classList.add("hidden");
+  DOM.startScreen.classList.remove("hidden");
+
+  DOM.wordContainer.innerHTML = "";
+  DOM.lettersContainer.innerHTML = "";
+  DOM.categoryTitle.textContent = "";
+  DOM.attemptsText.textContent = "";
+}
+
+function goBackToCategories() {
+  hideResultModal();
+  resetGameState();
+
+  DOM.gameScreen.classList.add("hidden");
+  DOM.categoryScreen.classList.remove("hidden");
+  DOM.startScreen.classList.add("hidden");
+
+  DOM.wordContainer.innerHTML = "";
+  DOM.lettersContainer.innerHTML = "";
+  DOM.categoryTitle.textContent = "";
+  DOM.attemptsText.textContent = "";
+}
+
+function goToCategoryScreen() {
+  hideResultModal();
+  resetGameState();
+
+  DOM.gameScreen.classList.add("hidden");
+  DOM.startScreen.classList.add("hidden");
+  DOM.categoryScreen.classList.remove("hidden");
+
+  DOM.wordContainer.innerHTML = "";
+  DOM.lettersContainer.innerHTML = "";
+  DOM.categoryTitle.textContent = "";
+  DOM.attemptsText.textContent = "";
 }
