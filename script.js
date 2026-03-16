@@ -6,12 +6,13 @@ const DOM = {
   gameScreen: document.getElementById("gameScreen"),
   categoryButtons: document.querySelectorAll(".category-btn"),
   wordContainer: document.getElementById("wordContainer"),
-  wordContainer: document.getElementById("wordContainer"),
+
   categoryTitle: document.getElementById("categoryTitle"),
 };
 
+/*
 const words = ["......"];
-
+*/
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
   sport: ["FOOTBALL", "BOX"],
@@ -24,7 +25,7 @@ const gameState = {
   category: "",
   chosenWord: "",
   guessedLetters: [],
-  wrongLetter: [],
+  wrongLetters: [],
 };
 
 //funkcija koja bira rec

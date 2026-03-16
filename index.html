@@ -8,15 +8,16 @@
   </head>
   <body>
     <div class="game_container">
-      <div id="startScreen" class="hidden">
+      <div id="startScreen">
         <h1 class="game-title">
           <span class="small">THE</span>
           HANGMAN
           <span class="small">GAME</span>
-          <div id="wordContainer"></div>
         </h1>
 
-        <button id="playBtn" class="play_btn">PLAY</button>
+        <div class="start-content">
+          <button id="playBtn" class="play_btn">PLAY</button>
+        </div>
       </div>
 
       <div id="categoryScreen" class="hidden">
@@ -39,6 +40,11 @@
           </button>
           <button class="category-btn" data-category="animals">Animals</button>
         </div>
+      </div>
+
+      <div id="gameScreen" class="hidden">
+        <h2 id="categoryTitle"></h2>
+        <div id="wordContainer"></div>
       </div>
     </div>
 
