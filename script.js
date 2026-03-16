@@ -78,6 +78,16 @@ function renderLetters() {
 renderWord();
 renderLetters();
 
+function handleLetterClick(letter, button) {
+  button.disabled = true;
+
+  if (gameState.guessedLetters.includes(letter)) return;
+
+  gameState.guessedLetters.push(letter);
+
+  renderWord();
+}
+
 function renderWord() {
   DOM.wordContainer.innerHTML = "";
 
