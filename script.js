@@ -7,6 +7,7 @@ const DOM = {
   categoryButtons: document.querySelectorAll(".category-btn"),
   wordContainer: document.getElementById("wordContainer"),
   categoryTitle: document.getElementById("categoryTitle"),
+  lettersContainer: document.getElementById("lettersContainer"),
 };
 
 const categories = {
