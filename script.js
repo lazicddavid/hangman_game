@@ -8,11 +8,17 @@ const DOM = {
   wordContainer: document.getElementById("wordContainer"),
   categoryTitle: document.getElementById("categoryTitle"),
   lettersContainer: document.getElementById("lettersContainer"),
+  attemptsText: document.getElementById("attemptsText"),
+  resultModal: document.getElementById("resultModal"),
+  resultMessage: document.getElementById("resultMessage"),
+  modalBackBtn: document.getElementById("modalBackBtn"),
+  newGameBtn: document.getElementById("newGameBtn"),
+  chooseCategoryBtn: document.getElementById("chooseCategoryBtn"),
 };
 
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
-  sport: ["FOOTBALL", "BOX"],
+  sport: ["FOTBALL", "BOX"],
   countries: ["SERBIA", "FRANCE", "SPAIN"],
   capitals: ["BELGRADE", "PARIS", "TOKYO", "MADRID"],
   animals: ["CAT", "DOG", "SHARK"],
@@ -23,6 +29,7 @@ const gameState = {
   chosenWord: "",
   guessedLetters: [],
   wrongLetters: [],
+  maxWrongAttemts: 6,
 };
 
 DOM.playBtn.addEventListener("click", function () {
@@ -37,6 +44,8 @@ DOM.backBtn.addEventListener("click", function () {
 
 function openGame(category) {
   gameState.category = category;
+  gameState.guessedLetters = [];
+  gameState.wrongLetters = [];
 
   DOM.categoryTitle.textContent = category.toUpperCase();
 
@@ -53,6 +62,21 @@ function openGame(category) {
 
   renderWord();
   renderLetters();
+}
+
+function renderWord() {
+  DOM.wordContainer.innerHTML = "";
+
+  gameState.chosenWord.split("").forEach(function (letter) {
+    const letterBox = document.createElement("div");
+    letterBox.classList.add("letter-box");
+
+    if (gameState.guessedLetters.includes(letter)) {
+      letterBox.textContent = letter;
+    }
+
+    DOM.wordContainer.appendChild(letterBox);
+  });
 }
 
 DOM.categoryButtons.forEach(function (button) {
@@ -72,29 +96,38 @@ function renderLetters() {
     letterBtn.textContent = letter;
     letterBtn.classList.add("letter-btn");
 
+    letterBtn.addEventListener("click", function () {
+      letterClick(letter, letterBtn);
+    });
+
     DOM.lettersContainer.appendChild(letterBtn);
   });
 }
+
+/*
 renderWord();
 renderLetters();
+*/
 
-function handleLetterClick(letter, button) {
+function letterClick(letter, button) {
   button.disabled = true;
 
   if (gameState.guessedLetters.includes(letter)) return;
+  if (gameState.wrongLetters.includes(letter)) return;
 
-  gameState.guessedLetters.push(letter);
+  if (gameState.chosenWord.includes(letter)) {
+    gameState.guessedLetters.push(letter);
+  } else {
+    gameState.wrongLetters.push(letter);
+  }
 
   renderWord();
+  renderAttempts();
+  checkGameStatus();
 }
+function renderAttempts() {
+  const attemptsLeft =
+    gameState.maxWrongAttempts - gameState.wrongLetters.length;
 
-function renderWord() {
-  DOM.wordContainer.innerHTML = "";
-
-  gameState.chosenWord.split("").forEach(function () {
-    const letterBox = document.createElement("div");
-    letterBox.classList.add("letter-box");
-
-    DOM.wordContainer.appendChild(letterBox);
-  });
+  DOM.attemptsText.textContent = `Attempts left: ${attemptsLeft}`;
 }

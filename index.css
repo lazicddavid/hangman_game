@@ -191,3 +191,31 @@ body {
   cursor: pointer;
   font-size: 18px;
 }
+
+#lettersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.letter-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.letter-box {
+  width: 45px;
+  height: 55px;
+  border-bottom: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+}
