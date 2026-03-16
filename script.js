@@ -6,13 +6,9 @@ const DOM = {
   gameScreen: document.getElementById("gameScreen"),
   categoryButtons: document.querySelectorAll(".category-btn"),
   wordContainer: document.getElementById("wordContainer"),
-
   categoryTitle: document.getElementById("categoryTitle"),
 };
 
-/*
-const words = ["......"];
-*/
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
   sport: ["FOOTBALL", "BOX"],
@@ -28,8 +24,6 @@ const gameState = {
   wrongLetters: [],
 };
 
-//funkcija koja bira rec
-
 DOM.playBtn.addEventListener("click", function () {
   DOM.startScreen.classList.add("hidden");
   DOM.categoryScreen.classList.remove("hidden");
@@ -40,36 +34,31 @@ DOM.backBtn.addEventListener("click", function () {
   DOM.startScreen.classList.remove("hidden");
 });
 
-//funkcije:
-/*
-let selectedCategory = "";
-let selectedWord = "";
-*/
 function openGame(category) {
-  selectedCategory = category;
+  gameState.category = category;
 
   DOM.categoryTitle.textContent = category.toUpperCase();
 
-  const words = categories[category];
-  selectedWord = words[Math.floor(Math.random() * words.length)];
+  const categoryWords = categories[category];
+  const randomIndex = Math.floor(Math.random() * categoryWords.length);
 
   gameState.chosenWord = categoryWords[randomIndex];
 
   DOM.categoryScreen.classList.add("hidden");
   DOM.gameScreen.classList.remove("hidden");
 
-  console.log(selectedCategory);
-  console.log(selectedWord);
+  console.log(gameState.category);
+  console.log(gameState.chosenWord);
+
+  renderWord();
 }
 
 DOM.categoryButtons.forEach(function (button) {
-  button.add.addEventListener("click", function () {
+  button.addEventListener("click", function () {
     const selectedCategory = button.dataset.category;
     openGame(selectedCategory);
   });
 });
-
-//funkc. za crtanje praznih polja
 
 function renderWord() {
   DOM.wordContainer.innerHTML = "";
@@ -81,4 +70,3 @@ function renderWord() {
     DOM.wordContainer.appendChild(letterBox);
   });
 }
-renderWord();
