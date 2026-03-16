@@ -1,3 +1,5 @@
+import DOM from "./dom.js";
+
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
   sport: ["FOOTBALL", "BOX"],
