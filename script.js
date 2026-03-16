@@ -109,6 +109,23 @@ renderWord();
 renderLetters();
 */
 
+function checkGameStatus() {
+  const allLettersGuessed = gameState.chosenWord
+    .split("")
+    .every(function (letter) {
+      return gameState.guessedLetters.includes(letter);
+    });
+
+  if (allLettersGuessed) {
+    showResultModal("YOU WIN");
+    return;
+  }
+
+  if (gameState.wrongLetters.length >= gameState.maxWrongAttempts) {
+    showResultModal("YOU LOSE");
+  }
+}
+
 function letterClick(letter, button) {
   button.disabled = true;
 
@@ -130,4 +147,11 @@ function renderAttempts() {
     gameState.maxWrongAttempts - gameState.wrongLetters.length;
 
   DOM.attemptsText.textContent = `Attempts left: ${attemptsLeft}`;
+}
+
+function resetGameState() {
+  gameState.category = "";
+  gameState.chosenWord = "";
+  gameState.guessedLetters = [];
+  gameState.wrongLetters = [];
 }
