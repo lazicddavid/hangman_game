@@ -7,6 +7,7 @@ const DOM = {
   categoryButtons: document.querySelectorAll(".category-btn"),
   wordContainer: document.getElementById("wordContainer"),
   wordContainer: document.getElementById("wordContainer"),
+  categoryTitle: document.getElementById("categoryTitle"),
 };
 
 const words = ["......"];
@@ -45,6 +46,8 @@ let selectedWord = "";
 */
 function openGame(category) {
   selectedCategory = category;
+
+  DOM.categoryTitle.textContent = category.toUpperCase();
 
   const words = categories[category];
   selectedWord = words[Math.floor(Math.random() * words.length)];
