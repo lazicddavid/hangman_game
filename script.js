@@ -61,6 +61,22 @@ DOM.categoryButtons.forEach(function (button) {
   });
 });
 
+function renderLetters() {
+  DOM.lettersContainer.innerHTML = "";
+
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  alphabet.forEach(function (letter) {
+    const letterBtn = document.createElement("button");
+    letterBtn.textContent = letter;
+    letterBtn.classList.add("letter-btn");
+
+    DOM.lettersContainer.appendChild(letterBtn);
+  });
+}
+renderWord();
+renderLetters();
+
 function renderWord() {
   DOM.wordContainer.innerHTML = "";
 
