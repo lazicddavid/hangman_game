@@ -174,3 +174,20 @@ body {
   height: 55px;
   border-bottom: 3px solid white;
 }
+
+#lettersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.letter-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}

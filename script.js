@@ -52,6 +52,7 @@ function openGame(category) {
   console.log(gameState.chosenWord);
 
   renderWord();
+  renderLetters();
 }
 
 DOM.categoryButtons.forEach(function (button) {
