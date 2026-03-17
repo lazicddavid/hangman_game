@@ -1,5 +1,6 @@
 import DOM from "./dom.js";
 
+//povecati kategorije
 const categories = {
   movies: ["GLADIATOR", "TITANIC"],
   sport: ["FOOTBALL", "BOX"],
@@ -35,7 +36,7 @@ DOM.categoryButtons.forEach(function (button) {
 });
 
 DOM.modalBackBtn.addEventListener("click", function () {
-  goBackToCategories();
+  backToCategories();
 });
 
 DOM.newGameBtn.addEventListener("click", function () {
@@ -45,7 +46,7 @@ DOM.newGameBtn.addEventListener("click", function () {
 DOM.chooseCategoryBtn.addEventListener("click", function () {
   goToCategoryScreen();
 });
-
+//razdvoj odgovornosti i metode napravi
 //pocetak igre
 function openGame(category) {
   gameState.category = category;
@@ -71,7 +72,7 @@ function openGame(category) {
   renderLetters();
   renderAttempts();
 }
-
+//this
 function renderWord() {
   DOM.wordContainer.innerHTML = "";
 
@@ -89,7 +90,7 @@ function renderWord() {
 
 function renderLetters() {
   DOM.lettersContainer.innerHTML = "";
-
+  //global scope
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   alphabet.forEach(function (letter) {
@@ -128,15 +129,18 @@ function letterClick(letter, button) {
   renderAttempts();
   checkGameStatus();
 }
-
 function checkGameStatus() {
-  const allLettersGuessed = gameState.chosenWord
-    .split("")
-    .every(function (letter) {
-      return gameState.guessedLetters.includes(letter);
-    });
+  const wordLetters = gameState.chosenWord.split("");
 
-  if (allLettersGuessed) {
+  let guessedCount = 0;
+
+  wordLetters.forEach(function (letter) {
+    if (gameState.guessedLetters.includes(letter)) {
+      guessedCount++;
+    }
+  });
+
+  if (guessedCount === wordLetters.length) {
     showResultModal("YOU WIN");
     return;
   }
@@ -184,7 +188,7 @@ function goToStartScreen() {
   DOM.attemptsText.textContent = "";
 }
 
-function goBackToCategories() {
+function backToCategories() {
   hideResultModal();
   resetGameState();
 
