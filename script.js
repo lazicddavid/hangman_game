@@ -2,6 +2,9 @@ import DOM from "./dom.js";
 import categories from "./categories.js";
 
 
+//razdvoj odgovornosti i metode napravi
+//pocetak igre
+
 //stejt
 const gameState = {
   category: "",
@@ -52,12 +55,6 @@ function setupGame(category) {
   gameState.chosenWord = categoryWords[randomIndex];
 }
 
-
-
-
-
-
-
 function startGameUI(category) {
   DOM.categoryTitle.textContent = category.toUpperCase();
 
@@ -66,7 +63,7 @@ function startGameUI(category) {
 
   hideResultModal();
 
-  renderWord();
+  gameState.renderWord();
   renderLetters();
   renderAttempts();
 }
@@ -104,32 +101,8 @@ DOM.newGameBtn.addEventListener("click", function () {
 DOM.chooseCategoryBtn.addEventListener("click", function () {
   goToCategoryScreen();
 });
-//razdvoj odgovornosti i metode napravi
-//pocetak igre
-function openGame(category) {
-  gameState.category = category;
-  gameState.guessedLetters = [];
-  gameState.wrongLetters = [];
 
-  DOM.categoryTitle.textContent = category.toUpperCase();
 
-  const categoryWords = categories[category];
-  const randomIndex = Math.floor(Math.random() * categoryWords.length);
-
-  gameState.chosenWord = categoryWords[randomIndex];
-
-  DOM.categoryScreen.classList.add("hidden");
-  DOM.gameScreen.classList.remove("hidden");
-
-  hideResultModal();
-
-  console.log(gameState.category);
-  console.log(gameState.chosenWord);
-
-game.renderWord();
-  renderLetters();
-  renderAttempts();
-}
 
 function renderLetters() {
   DOM.lettersContainer.innerHTML = "";
@@ -162,16 +135,21 @@ function letterClick(letter, button) {
   if (gameState.guessedLetters.includes(letter)) return;
   if (gameState.wrongLetters.includes(letter)) return;
 
+ 
+
   if (gameState.chosenWord.includes(letter)) {
     gameState.guessedLetters.push(letter);
   } else {
     gameState.wrongLetters.push(letter);
   }
 
-
+  gameState.renderWord();
   renderAttempts();
   checkGameStatus();
 }
+
+
+
 function checkGameStatus() {
   const wordLetters = gameState.chosenWord.split("");
 
