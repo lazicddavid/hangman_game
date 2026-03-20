@@ -130,12 +130,12 @@ function renderAttempts() {
 }
 
 function letterClick(letter, button) {
-  button.disabled = true;
+ 
 
   if (gameState.guessedLetters.includes(letter)) return;
   if (gameState.wrongLetters.includes(letter)) return;
 
- 
+  button.disabled = true;
 
   if (gameState.chosenWord.includes(letter)) {
     gameState.guessedLetters.push(letter);
