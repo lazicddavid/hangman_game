@@ -33,6 +33,49 @@ const gameState = {
   },
 };
 
+
+
+function openGame(category) {
+  setupGame(category);
+  startGameUI(category);
+}
+
+
+function setupGame(category) {
+  gameState.category = category;
+  gameState.guessedLetters = [];
+  gameState.wrongLetters = [];
+
+  const categoryWords = categories[category];
+  const randomIndex = Math.floor(Math.random() * categoryWords.length);
+
+  gameState.chosenWord = categoryWords[randomIndex];
+}
+
+
+
+
+
+
+
+function startGameUI(category) {
+  DOM.categoryTitle.textContent = category.toUpperCase();
+
+  DOM.categoryScreen.classList.add("hidden");
+  DOM.gameScreen.classList.remove("hidden");
+
+  hideResultModal();
+
+  renderWord();
+  renderLetters();
+  renderAttempts();
+}
+
+
+
+
+
+
 DOM.playBtn.addEventListener("click", function () {
   DOM.startScreen.classList.add("hidden");
   DOM.categoryScreen.classList.remove("hidden");
