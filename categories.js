@@ -24,7 +24,7 @@ const categories = {
     "THE DARK KNIGHT",
     "THE BIG LEBOWSKI",
     "THE WIZARD OF OZ",
-    "SCHINDLER'S LIST",
+    "SCHINDLERS LIST",
     "TOY STORY", 
     "THE SILENCE OF THE LAMBS",
     "ALIEN",
