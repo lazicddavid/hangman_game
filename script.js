@@ -1,5 +1,5 @@
 import DOM from "./dom.js";
-
+import categories from "./categories.js";
 
 
 //stejt
