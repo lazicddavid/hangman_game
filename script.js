@@ -1,200 +1,6 @@
 import DOM from "./dom.js";
 
-//povecati kategorije
-const categories = {
-  movies: [
-    "THE GODFATHER",
-    "TITANIC",
-    "INCEPTION",
-    "GLADIATOR",
-    "CASABLANCA",
-    "PSYCHO",
-    "AVATAR",
-    "JAWS",
-    "FROZEN",
-    "THE MATRIX",
-    "GOODFELLAS",
-    "BRAVEHEART",
-    "FIGHT CLUB",
-    "PULP FICTION",
-    "FORREST GUMP",
-    "THE LION KING",
-    "BACK TO THE FUTURE",
-    "JURASSIC PARK",
-    "BLADE RUNNER",
-    "STAR WARS",
-    "THE DARK KNIGHT",
-    "THE BIG LEBOWSKI",
-    "THE WIZARD OF OZ",
-    "SCHINDLER'S LIST",
-    "TOY STORY",
-    "THE SILENCE OF THE LAMBS",
-    "ALIEN",
-    "INTERSTELLAR",
-    "RAIDERS OF THE LOST ARK",
-    "LA LA LAND",
-  ],
-  tvshows: [
-    "BREAKING BAD",
-    "SOUTH PARK",
-    "GAME OF THRONES",
-    "STRANGER THINGS",
-    "THE SOPRANOS",
-    "FRIENDS",
-    "THE OFFICE",
-    "SHERLOCK",
-    "BLACK MIRROR",
-    "THE CROWN",
-    "WESTWORLD",
-    "BETTER CALL SAUL",
-    "ORANGE IS THE NEW BLACK",
-    "THE SIMPSONS",
-    "ARRESTED DEVELOPMENT",
-    "SUCCESSION",
-    "FARGO",
-    "MAD MEN",
-    "THE WEST WING",
-    "DEXTER",
-    "RICK AND MORTY",
-    "LOST",
-    "DOCTOR WHO",
-    "THE WALKING DEAD",
-    "PEAKY BLINDERS",
-    "BUFFY THE VAMPIRE SLAYER",
-    "THE BIG BANG THEORY",
-    "CURB YOUR ENTHUSIASM",
-    "TED LASSO",
-    "TRUE DETECTIVE",
-  ],
-  countries: [
-    "AUSTRALIA",
-    "BRAZIL",
-    "CANADA",
-    "DENMARK",
-    "EGYPT",
-    "FRANCE",
-    "GERMANY",
-    "HUNGARY",
-    "INDIA",
-    "JAPAN",
-    "KENYA",
-    "LUXEMBOURG",
-    "MEXICO",
-    "NETHERLANDS",
-    "OMAN",
-    "PERU",
-    "QATAR",
-    "RUSSIA",
-    "SPAIN",
-    "THAILAND",
-    "UNITED KINGDOM",
-    "VIETNAM",
-    "ITALY",
-    "UNITED STATES",
-    "CHINA",
-    "SOUTH AFRICA",
-    "NEW ZEALAND",
-    "ARGENTINA",
-    "BELGIUM",
-    "CHILE",
-  ],
-  capitalcities: [
-    "TOKYO",
-    "PARIS",
-    "LONDON",
-    "KUALA LUMPUR",
-    "BERLIN",
-    "OTTAWA",
-    "CANBERRA",
-    "MOSCOW",
-    "BEIJING",
-    "NEW DELHI",
-    "COPENHAGEN",
-    "CAIRO",
-    "MADRID",
-    "ROME",
-    "BUENOS AIRES",
-    "BANGKOK",
-    "VIENNA",
-    "SEOUL",
-    "JAKARTA",
-    "LISBON",
-    "RIYADH",
-    "HELSINKI",
-    "OSLO",
-    "STOCKHOLM",
-    "ATHENS",
-    "DUBLIN",
-    "PRAGUE",
-    "BUDAPEST",
-    "WARSAW",
-    "AMSTERDAM",
-  ],
-  animals: [
-    "ELEPHANT",
-    "LION",
-    "GIRAFFE",
-    "PENGUIN",
-    "DOLPHIN",
-    "TIGER",
-    "KANGAROO",
-    "PANDA",
-    "ZEBRA",
-    "POLAR BEAR",
-    "CHEETAH",
-    "RHINO",
-    "BUFFALO",
-    "KOALA",
-    "GORILLA",
-    "CHIMPANZEE",
-    "CROCODILE",
-    "FLAMINGO",
-    "PEACOCK",
-    "JAGUAR",
-    "LEOPARD",
-    "WOLF",
-    "FOX",
-    "BALD EAGLE",
-    "OWL",
-    "FROG",
-    "SHARK",
-    "OCTOPUS",
-    "TURTLE",
-    "SNAKE",
-  ],
-  sports: [
-    "SOCCER",
-    "BASKETBALL",
-    "TENNIS",
-    "BASEBALL",
-    "ROCK CLIMBING",
-    "SWIMMING",
-    "VOLLEYBALL",
-    "TABLE TENNIS",
-    "BADMINTON",
-    "RUGBY",
-    "CRICKET",
-    "HOCKEY",
-    "BOXING",
-    "MARTIAL ARTS",
-    "FENCING",
-    "ARCHERY",
-    "SKIING",
-    "BOBSLEIGH",
-    "CYCLING",
-    "CURLING",
-    "SURFING",
-    "DIVING",
-    "GYMNASTICS",
-    "ATHLETICS",
-    "ROWING",
-    "SAILING",
-    "CANOEING",
-    "ICE HOCKEY",
-    "TRIATHLON",
-    "AMERICAN FOOTBALL",
-  ],
-};
+
 
 //stejt
 const gameState = {
@@ -203,6 +9,28 @@ const gameState = {
   guessedLetters: [],
   wrongLetters: [],
   maxWrongAttempts: 6,
+
+
+
+    renderWord() {
+    DOM.wordContainer.innerHTML = "";
+
+    this.chosenWord.split("").forEach((letter) => {
+      const letterBox = document.createElement("div");
+      letterBox.classList.add("letter-box");
+
+      if (letter === " ") {
+        letterBox.textContent = "";
+        letterBox.classList.add("space-box");
+      } else if (letter === "'") {
+        letterBox.textContent = "'";
+      } else if (this.guessedLetters.includes(letter)) {
+        letterBox.textContent = letter;
+      }
+
+      DOM.wordContainer.appendChild(letterBox);
+    });
+  },
 };
 
 DOM.playBtn.addEventListener("click", function () {
@@ -255,24 +83,9 @@ function openGame(category) {
   console.log(gameState.category);
   console.log(gameState.chosenWord);
 
-  renderWord();
+game.renderWord();
   renderLetters();
   renderAttempts();
-}
-//this
-function renderWord() {
-  DOM.wordContainer.innerHTML = "";
-
-  gameState.chosenWord.split("").forEach(function (letter) {
-    const letterBox = document.createElement("div");
-    letterBox.classList.add("letter-box");
-
-    if (gameState.guessedLetters.includes(letter)) {
-      letterBox.textContent = letter;
-    }
-
-    DOM.wordContainer.appendChild(letterBox);
-  });
 }
 
 function renderLetters() {
@@ -312,7 +125,7 @@ function letterClick(letter, button) {
     gameState.wrongLetters.push(letter);
   }
 
-  renderWord();
+
   renderAttempts();
   checkGameStatus();
 }
