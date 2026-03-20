@@ -132,15 +132,19 @@ function letterClick(letter, button) {
 function checkGameStatus() {
   const wordLetters = gameState.chosenWord.split("");
 
+  const lettersOnly = wordLetters.filter(function (letter) {
+    return letter !== " " && letter !== "'";
+  });
+
   let guessedCount = 0;
 
-  wordLetters.forEach(function (letter) {
+  lettersOnly.forEach(function (letter) {
     if (gameState.guessedLetters.includes(letter)) {
       guessedCount++;
     }
   });
 
-  if (guessedCount === wordLetters.length) {
+  if (guessedCount === lettersOnly.length) {
     showResultModal("YOU WIN");
     return;
   }
