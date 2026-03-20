@@ -193,3 +193,5 @@ const categories = {
     "AMERICAN FOOTBALL",
   ],
 };
+
+export default categories;
