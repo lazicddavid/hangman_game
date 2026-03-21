@@ -17,3 +17,5 @@ const DOM = {
 };
 
 export default DOM;
+
+export 

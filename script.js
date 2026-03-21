@@ -4,7 +4,7 @@ import categories from "./categories.js";
 
 //razdvoj odgovornosti i metode napravi
 //pocetak igre
-
+//razdvojiti setpGame
 //stejt
 const gameState = {
   category: "",
@@ -12,8 +12,6 @@ const gameState = {
   guessedLetters: [],
   wrongLetters: [],
   maxWrongAttempts: 6,
-
-
 
     renderWord() {
     DOM.wordContainer.innerHTML = "";
@@ -36,13 +34,10 @@ const gameState = {
   },
 };
 
-
-
 function openGame(category) {
   setupGame(category);
   startGameUI(category);
 }
-
 
 function setupGame(category) {
   gameState.category = category;
@@ -67,10 +62,6 @@ function startGameUI(category) {
   renderLetters();
   renderAttempts();
 }
-
-
-
-
 
 
 DOM.playBtn.addEventListener("click", function () {
@@ -102,11 +93,9 @@ DOM.chooseCategoryBtn.addEventListener("click", function () {
   goToCategoryScreen();
 });
 
-
-
 function renderLetters() {
   DOM.lettersContainer.innerHTML = "";
-  //global scope
+ 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   alphabet.forEach(function (letter) {
@@ -147,8 +136,6 @@ function letterClick(letter, button) {
   renderAttempts();
   checkGameStatus();
 }
-
-
 
 function checkGameStatus() {
   const wordLetters = gameState.chosenWord.split("");
