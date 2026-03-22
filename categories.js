@@ -1,5 +1,6 @@
 //povecati kategorije
 const categories = {
+  categories
   movies: [
     "THE GODFATHER",
     "TITANIC",
